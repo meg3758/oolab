@@ -11,7 +11,7 @@ public class Vector2dTest {
     Vector2d v5 = new Vector2d(2,13);
     Vector2d v6 = new Vector2d(-4,-5);
     Vector2d v7 = new Vector2d(5,5);
-    Vector2d v8 = new Vector2d(0,11);
+    Vector2d v8 = new Vector2d(0,-11);
     @Test
     public void equalsTest(){
         assertEquals(v1,v5);

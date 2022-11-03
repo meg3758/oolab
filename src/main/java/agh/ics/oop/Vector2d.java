@@ -23,9 +23,7 @@ public class Vector2d {
     public boolean follows (Vector2d other){
         return this.x >= other.x && this.y >= other.y;
     }
-    public Vector2d add (Vector2d other){
-        return new Vector2d(this.x+other.x,this.y+other.y);
-    }
+    public Vector2d add (Vector2d other){return new Vector2d(this.x+other.x,this.y+other.y);}
     public Vector2d substract (Vector2d other){
         return new Vector2d(this.x-other.x,this.y-other.y);
     }

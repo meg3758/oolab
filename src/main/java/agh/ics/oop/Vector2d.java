@@ -38,7 +38,7 @@ public class Vector2d {
     }
     public boolean equals(Object other){
         if (other instanceof Vector2d){
-            return this.x == ((Vector2d) other).x && this.y == ((Vector2d) other).y;
+            return this.x==((Vector2d) other).x && this.y == ((Vector2d) other).y;
         }
         else{
             return false;

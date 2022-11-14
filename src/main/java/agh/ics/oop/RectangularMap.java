@@ -2,13 +2,11 @@ package agh.ics.oop;
 
 import java.util.ArrayList;
 
-public class RectangularMap implements IWorldMap{
+public class RectangularMap extends AbstractWorldMap{
     private final int width;
     private final int height;
     private final Vector2d lowerLeftCorner;
     private final Vector2d upperRightCorner;
-    private final ArrayList<Animal> Animals;
-    private final MapVisualizer mapVisualizer;
 
     public RectangularMap(int width, int height){
         this.width=width;
@@ -16,44 +14,16 @@ public class RectangularMap implements IWorldMap{
         this.lowerLeftCorner=new Vector2d(0,0);
         this.upperRightCorner=new Vector2d(width-1,height-1);
         this.Animals=new ArrayList<>();
-        this.mapVisualizer= new MapVisualizer(this);
     }
 
     @Override
-    public boolean canMoveTo(Vector2d position) {
-        return position.follows(lowerLeftCorner) && position.precedes(upperRightCorner) && !isOccupied(position);
+    public Vector2d upperRightCorner() {
+        return upperRightCorner;
     }
 
     @Override
-    public boolean place(Animal animal) {
-        if (!isOccupied(animal.getPosition())){
-            Animals.add(animal);
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isOccupied(Vector2d position) {
-        for (Animal a : Animals){
-            if (a.getPosition().equals(position)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public Object objectAt(Vector2d position) {
-        for(Animal a : Animals){
-            if (a.getPosition().equals(position)){
-                return a;
-            }
-        }
-        return false;
-    }
-    public String toString(){
-        return mapVisualizer.draw(lowerLeftCorner,upperRightCorner);
+    public Vector2d lowerLeftCorner() {
+        return lowerLeftCorner;
     }
 
 }

@@ -12,9 +12,8 @@ public class GrassFieldTest {
         GrassField grassField = new GrassField(grass);
         IEngine engine = new SimulationEngine(directions, grassField, positions);
         engine.run();
-        for (int i = 0; i < grass; i++) {
-            assertFalse(grassField.canMoveTo(grassField.getGrassAt(i).getPosition()));
-        }
+        assertTrue(grassField.canMoveTo(new Vector2d(2,2)));
+        assertTrue(grassField.canMoveTo(new Vector2d(3,4)));
     }
     @Test
     public void correctMovementTest() {
@@ -24,8 +23,8 @@ public class GrassFieldTest {
         MoveDirection[] directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"});
         SimulationEngine engine = new SimulationEngine(directions, grassField, positions);
         engine.run();
-        for (int i = 0; i < grass; i++) {
-            assertTrue(grassField.isOccupied(grassField.getGrassAt(i).getPosition()));
-        }
+        assertTrue(grassField.canMoveTo(new Vector2d(1,1)));
+        assertTrue(grassField.canMoveTo(new Vector2d(2,3)));
+        assertTrue(grassField.canMoveTo(new Vector2d(4,5)));
     }
 }

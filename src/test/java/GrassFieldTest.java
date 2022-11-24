@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GrassFieldTest {
     @Test
-    public void placeGrassTest() {
+    public void correstMovement1Test() {
         int grass = 10;
         MoveDirection[] directions = OptionsParser.parse(new String[]{"f", "b", "r", "l", "f", "f", "r", "r", "f", "f", "f", "f", "f", "f", "f", "f"});
         Vector2d[] positions = {new Vector2d(2, 2), new Vector2d(3, 4)};
@@ -16,7 +16,7 @@ public class GrassFieldTest {
         assertTrue(grassField.canMoveTo(new Vector2d(3,4)));
     }
     @Test
-    public void correctMovementTest() {
+    public void correctMovement2Test() {
         int grass = 10;
         Vector2d[] positions = {new Vector2d(1,1),new Vector2d(2,3),new Vector2d(4,5)};
         GrassField grassField = new GrassField(grass);

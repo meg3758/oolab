@@ -54,6 +54,7 @@ public class Animal {
             }
             if (map.canMoveTo(newPosition)){
                 changePosition(this.position,newPosition);
+                
                 this.position=newPosition;
             }
     }

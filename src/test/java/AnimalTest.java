@@ -35,7 +35,6 @@ public class AnimalTest {
         assertTrue(engine.getAnimal(1).isAt(new Vector2d(4,3)));
         assertTrue(engine.getAnimal(2).isAt(new Vector2d(4,5)));
 
-
     }
 
 

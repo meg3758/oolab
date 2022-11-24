@@ -6,16 +6,19 @@ public class GrassField extends AbstractWorldMap{
     protected Map<Vector2d, Grass> grassPoints = new HashMap<>();
     private final Vector2d lowerLeftCorner;
     private Vector2d upperRightCorner;
+
     public GrassField(int number){
         this.clumpsOfGrass=number;
         this.lowerLeftCorner = new Vector2d(0,0);
         this.upperRightCorner = new Vector2d(Integer.MAX_VALUE,Integer.MAX_VALUE);
+        this.mapBoundary = new MapBoundary();
         Random random = new Random();
         while (grassPoints.size()<this.clumpsOfGrass){
             Vector2d position = new Vector2d(random.nextInt((int) Math.sqrt(number*10)),random.nextInt((int) Math.sqrt(number*10)));
             if (getGrassAt(position)==null){
                 Grass g = new Grass(position);
                 this.grassPoints.put(position,g);
+                mapBoundary.addPosition(position);
             }
         }
 
@@ -26,40 +29,12 @@ public class GrassField extends AbstractWorldMap{
 
     @Override
     public Vector2d upperRightCorner() {
-        return upperRightCorner;
+        return mapBoundary.getUpperRight();
     }
 
     @Override
     public Vector2d lowerLeftCorner() {
-        return lowerLeftCorner;
-    }
-    /**
-    public Vector2d getUpperRightCorner(){
-        int x_corner = 0;
-        int y_corner = 0;
-        for(Animal a : Animals){
-            x_corner = Math.max(x_corner,a.getPosition().x);
-            y_corner = Math.max(y_corner,a.getPosition().y);
-        }
-        for(Grass g : grassPoints) {
-            x_corner = Math.max(x_corner,g.getPosition().x);
-            y_corner = Math.max(y_corner,g.getPosition().y);
-        }
-        this.upperRightCorner = new Vector2d(x_corner,y_corner);
-        return upperRightCorner;
-    }
-     **/
-    public Vector2d getUpperRightCorner(){
-        Vector2d corner=new Vector2d(0,0);
-        for (Map.Entry<Vector2d, Grass> set: grassPoints.entrySet()){
-            Vector2d vector = set.getKey();
-            corner=corner.upperRight(vector);
-        }
-        for (Map.Entry<Vector2d, Animal> set: Animals.entrySet()){
-            Vector2d vector = set.getKey();
-            corner=corner.upperRight(vector);
-        }
-        return corner;
+        return mapBoundary.getLowerLeft();
     }
     @Override
     public boolean canMoveTo(Vector2d position) {
@@ -80,7 +55,7 @@ public class GrassField extends AbstractWorldMap{
     @Override
     public String toString() {
         MapVisualizer map = new MapVisualizer(this);
-        return map.draw(lowerLeftCorner(), getUpperRightCorner());
+        return map.draw(lowerLeftCorner(), upperRightCorner());
     }
 
 }

@@ -1,6 +1,6 @@
 package agh.ics.oop;
 import java.util.*;
-public class Animal {
+public class Animal implements IMapElement{
 
     private MapDirection orientation;
     private Vector2d position;
@@ -30,6 +30,7 @@ public class Animal {
     public MapDirection getOrientation(){
         return this.orientation;
     }
+    @Override
     public Vector2d getPosition(){
         return this.position;
     }
@@ -54,7 +55,17 @@ public class Animal {
             }
             if (map.canMoveTo(newPosition)){
                 changePosition(this.position,newPosition);
+                
                 this.position=newPosition;
             }
+    }
+    @Override
+    public String getImagePath(){
+        return switch (this.getOrientation()){
+            case NORTH -> "src/main/resources/up.png";
+            case EAST -> "src/main/resources/right.png";
+            case SOUTH -> "src/main/resources/down.png";
+            case WEST -> "src/main/resources/left.png";
+        };
     }
 }
